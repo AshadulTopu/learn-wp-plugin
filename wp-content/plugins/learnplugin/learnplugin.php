@@ -16,6 +16,19 @@ if (!defined('ABSPATH')) {
     die();
 }
 
+// define constant for plugin version
+define('LEARN_PLUGIN_VERSION', '1.0.1');
+// define constant for plugin directory
+define('LEARN_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
+define('LEARN_PLUGIN_DIR_VIEW_PATH', plugin_dir_path(__FILE__) . 'views/');
+define('LEARN_PLUGIN_DIR_ASSETS_PATH', plugin_dir_path(__FILE__) . 'assets/');
+// define constant for plugin url
+define('LEARN_PLUGIN_URL', plugin_dir_url(__FILE__));
+// define constant for plugin text domain
+// define('LEARN_PLUGIN_TEXT_DOMAIN', 'learn-plugin');
+// define constant for plugin file
+// define('LEARN_PLUGIN_FILE', __FILE__);
+
 
 // add action hook for admin menu
 add_action('admin_menu', 'learn_plugin_menu');
@@ -61,11 +74,11 @@ function learn_plugin_menu()
 // function for display content in menu page
 function learn_plugin_page()
 {
-    include plugin_dir_path(__FILE__) . 'views/add-new.php';
+    include LEARN_PLUGIN_DIR_VIEW_PATH . '/add-new.php';
 }
 
 // function for display content in submenu page
 function learn_plugin_view_all_page()
 {
-    include plugin_dir_path(__FILE__) . 'views/view-all.php';
+    include LEARN_PLUGIN_DIR_VIEW_PATH . '/view-all.php';
 }
