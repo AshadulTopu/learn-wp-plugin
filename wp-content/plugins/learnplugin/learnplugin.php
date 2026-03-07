@@ -82,3 +82,7 @@ function learn_plugin_view_all_page()
 {
     include LEARN_PLUGIN_DIR_VIEW_PATH . '/view-all.php';
 }
+
+
+// load plugin styles and scripts
+require_once LEARN_PLUGIN_DIR_PATH . 'include/plugin-script.php';

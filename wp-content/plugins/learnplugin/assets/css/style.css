@@ -1,0 +1,17 @@
+/* 
+Plugin Name: Learn Plugin
+Description: A simple WordPress plugin to demonstrate adding admin menu items and pages.
+Version: 1.0.1
+Author: Ashadul Islam
+Author URI: https://wordpress.org/author/ashadul-islam
+
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: red;
+}
