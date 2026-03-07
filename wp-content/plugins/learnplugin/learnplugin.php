@@ -40,7 +40,7 @@ function learn_plugin_menu()
     // submenu for main menu page
     add_submenu_page(
         'learn-plugin',
-        'Learn Plugin Submenu Page',
+        'Add New',
         'Add New',
         'manage_options',
         'learn-plugin',
@@ -50,50 +50,22 @@ function learn_plugin_menu()
     // add submenu page in admin sidebar
     add_submenu_page(
         'learn-plugin',
-        'Learn Plugin Submenu Page',
-        'Learn Plugin Submenu Combined',
+        'View All',
+        'View All',
         'manage_options',
-        'learn-plugin-submenu-combined',
-        'learn_plugin_submenu_page'
+        'learn-plugin-view-all',
+        'learn_plugin_view_all_page'
     );
 }
 
 // function for display content in menu page
 function learn_plugin_page()
 {
-    ?>
-    <div class="wrap">
-        <h1>Learn Plugin</h1>
-        <p>This is the content of the Learn Plugin page.</p>
-    </div>
-    <?php
-}
-
-
-// =========================================================== //
-// add submenu page in admin sidebar / separate action hook for submenu
-add_action('admin_menu', 'learn_plugin_submenu');
-
-// function for add submenu in admin sidebar
-function learn_plugin_submenu()
-{
-    add_submenu_page(
-        'learn-plugin',
-        'Learn Plugin Submenu',
-        'Learn Plugin Submenu Separate',
-        'manage_options',
-        'learn-plugin-submenu-separate',
-        'learn_plugin_submenu_page'
-    );
+    include plugin_dir_path(__FILE__) . 'views/add-new.php';
 }
 
 // function for display content in submenu page
-function learn_plugin_submenu_page()
+function learn_plugin_view_all_page()
 {
-    ?>
-    <div class="wrap">
-        <h1>Learn Plugin Submenu</h1>
-        <p>This is the content of the Learn Plugin Submenu page.</p>
-    </div>
-    <?php
+    include plugin_dir_path(__FILE__) . 'views/view-all.php';
 }
