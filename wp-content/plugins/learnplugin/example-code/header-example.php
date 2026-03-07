@@ -1,0 +1,17 @@
+<?php
+
+/**
+ *
+ * Plugin Name: Learn Plugin
+ * Plugin URI: http://wordpress.org/plugins/learn-plugin/
+ * Description: Learn how to create a plugin.
+ * Author: Ashadul Islam
+ * Version: 1.0.1
+ * Author URI: https://wordpress.org/author/ashadul-islam
+ * Text Domain: learn-plugin
+ */
+
+// Do not load directly.
+if (!defined('ABSPATH')) {
+    die();
+}
