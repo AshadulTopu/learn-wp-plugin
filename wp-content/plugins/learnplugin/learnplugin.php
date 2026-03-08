@@ -86,6 +86,7 @@ function learn_plugin_view_all_page()
 
 // load plugin styles and scripts
 require_once LEARN_PLUGIN_DIR_PATH . 'include/plugin-script.php';
+require_once LEARN_PLUGIN_DIR_PATH . 'include/ajax.php';
 // require_once LEARN_PLUGIN_DIR_PATH . 'include/database-table-on-installation.php';
 // require_once LEARN_PLUGIN_DIR_PATH . 'include/database-table-drop-on-uninstallation.php';
 
