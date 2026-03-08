@@ -35,35 +35,31 @@
 // localize script for passing data from PHP to JavaScript
 function learn_plugin_localize_script()
 {
-    // wp_localize_script('learn-plugin-main', 'learnPluginData', array(
-    //     'ajaxUrl' => admin_url('admin-ajax.php'),
-    //     // 'nonce' => wp_create_nonce('learn_plugin_nonce'),
-    // ));
-
     wp_localize_script(
         'learn-plugin-main',
-        'ajaxUrl', // this is the name of the JavaScript variable that will be created in the global scope, so we can use it in our JavaScript code to access the AJAX URL.
-        admin_url('admin-ajax.php'),
+        'ajaxUrl',
+        admin_url('admin-ajax.php')
     );
 }
-add_action('init', 'learn_plugin_localize_script');
+add_action('wp_enqueue_scripts', 'learn_plugin_localize_script');
+add_action('admin_enqueue_scripts', 'learn_plugin_localize_script');
 
-if (isset($_REQUEST['action'])) { // Check if the 'action' parameter is set in the request
-    switch ($_REQUEST['action']) { // Switch based on the value of the 'action' parameter
-        case 'learn_plugin_library':
-            add_action('admin_init', 'learn_plugin_library');
-            break;
-        default:
-            wp_send_json_error('Unknown action');
-            break;
-    }
+// Handle AJAX request for learn_plugin_action
+add_action('wp_ajax_learn_plugin_action', 'learn_plugin_handle_ajax');
+add_action('wp_ajax_nopriv_learn_plugin_action', 'learn_plugin_handle_ajax');
 
+function learn_plugin_handle_ajax()
+{
+    check_ajax_referer('learn_plugin_action', 'nonce');
+    wp_send_json_success(['message' => 'Success!']);
+}
 
-    function learn_plugin_library() // This function will be called when the AJAX request with action 'learn_plugin_library' is made. We can include the necessary code to handle the request and send a response back to the client.
-    {
-        global $wpdb;
+// Handle AJAX request for learn_plugin_library
+add_action('wp_ajax_learn_plugin_library', 'learn_plugin_library');
+add_action('wp_ajax_nopriv_learn_plugin_library', 'learn_plugin_library');
 
-        include_once LEARN_PLUGIN_DIR_PATH . 'library/custom-plugin-lib.php'; // Include the library file that contains the code to handle the AJAX request. This file should contain the necessary code to process the request and send a response back to the client.
-    }
-
+function learn_plugin_library()
+{
+    global $wpdb;
+    include_once LEARN_PLUGIN_DIR_PATH . 'library/custom-plugin-lib.php';
 }

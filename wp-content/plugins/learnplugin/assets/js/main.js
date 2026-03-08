@@ -11,19 +11,19 @@ jQuery(function ($) {
     //     //         alert('AJAX response: ' + response);
     //     //     });
 
-    //     var post_data = "action=learn_plugin_library&param=get_message";
-    //     $.post(ajaxUrl, post_data, function (response) {
-    //         console.log('AJAX response:', response);
-    //         alert('AJAX response: ' + response);
-    //     });
+    //     //     var post_data = "action=learn_plugin_library&param=get_message";
+    //     //     $.post(ajaxUrl, post_data, function (response) {
+    //     //         console.log('AJAX response:', response);
+    //     //         alert('AJAX response: ' + response);
+    //     //     });
 
-    // });
+    //     // });
 
 
     document.getElementById('learn-plugin-button').addEventListener('click', function () {
         const nonce = document.querySelector('[name="learn_plugin_nonce"]').value;
 
-        fetch('/learnplugin/wp-admin/admin-ajax.php', {
+        fetch(ajaxUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -31,7 +31,15 @@ jQuery(function ($) {
             body: 'action=learn_plugin_action&nonce=' + nonce
         })
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log('Response:', data);
+                if (data.success) {
+                    alert(data.data.message);  // Show the success message
+                    console.log('Message:', data.data.message);
+                } else {
+                    alert('Error: ' + data.data);
+                }
+            })
             .catch(error => console.error('Error:', error));
     });
 
