@@ -69,6 +69,15 @@ function learn_plugin_menu()
         'learn-plugin-view-all',
         'learn_plugin_view_all_page'
     );
+
+    add_submenu_page(
+        'learn-plugin',
+        'Forms',
+        'Forms',
+        'manage_options',
+        'learn-plugin-forms',
+        'learn_plugin_forms_page'
+    );
 }
 
 // function for display content in menu page
@@ -81,6 +90,11 @@ function learn_plugin_page()
 function learn_plugin_view_all_page()
 {
     include LEARN_PLUGIN_DIR_VIEW_PATH . '/view-all.php';
+}
+
+function learn_plugin_forms_page()
+{
+    include LEARN_PLUGIN_DIR_VIEW_PATH . '/forms.php';
 }
 
 
